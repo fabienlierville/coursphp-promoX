@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>LAMP STACK</title>
-        <link rel="stylesheet" href="/stack/assetsassets/css/bulma.min.css">
+        <link rel="stylesheet" href="/stack/assets/css/bulma.min.css">
     </head>
     <body>
         <section class="hero is-medium is-info is-bold">
