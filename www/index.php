@@ -1,14 +1,23 @@
 <?php
 require('./inc/config.php');
 require('./inc/header.php');
+var_dump($_POST);
 ?>
 <h1>Bienvenue sur notre blog</h1>
 
+<form name="recherche" method="POST">
+    <input placeholder = "ID Sql" name="search">
+    <input type="hidden" name="champinvisible" value="1234">
+</form>
+
+<form name="inscription" method="POST">
+    <input type="text" name="prenom">
+    <input type="text" name="nom">
+    <input type="date" name="date">
+    <input type="submit">
+</form>
+
+
 <?php
-$phrase = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tristique eget nulla at eleifend. Integer et sapien eu velit facilisis vestibulum sit amet eu leo. Mauris vitae viverra nunc. Nullam sit amet urna et ante suscipit pharetra. Pellentesque ut finibus quam. Proin vitae laoreet quam, ut pharetra nibh. Sed ornare.";
-
-$extrait = get_words(count: 12,sentence: $phrase )."...";
-var_dump($_GET);
+require('./inc/footer.php');
 ?>
-
-<?php require('./inc/footer.php'); ?>
