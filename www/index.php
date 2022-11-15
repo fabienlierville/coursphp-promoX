@@ -167,3 +167,31 @@ function afficherNomPrenom(string $nomFonction, string $prenomFonction) : string
 $nom = "Lierville";
 $retourFonction = afficherNomPrenom(prenomFonction: "Fabien", nomFonction: $nom);
 echo $retourFonction;
+
+
+function convertirDegre(float $degres,string $uniteEntrée,string $uniteSortie) : float  {
+    if($uniteEntrée=="C"){
+        if($uniteSortie=="F"){
+            //Conversion °C en °F
+            $result = $degres * 1.8 + 32;
+        }elseif($uniteSortie=="R"){
+            //Conversion °C en °R
+            $result = $degres * 1.8 + 62;
+        }
+    }elseif ($uniteEntrée=="F"){
+        //Conversion °F en °C
+        $result = ($degres - 32) / 1.8;
+    }elseif ($uniteEntrée=="R"){
+        //Conversion °R en °C
+        $result = ($degres) / 1.8;
+    }
+
+    return $result;
+}
+
+$degre = 20;
+$unite = "C"; //soit C sois F
+$uniteFutur = "R"; //soit C sois F
+$retourFonction = convertirDegre($degre,$unite,$uniteFutur);
+echo "$degre °$unite = $retourFonction";
+
