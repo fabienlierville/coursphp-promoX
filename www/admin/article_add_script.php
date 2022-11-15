@@ -1,6 +1,6 @@
 <?php
 
-include('./inc/config.php');
+include('../inc/config.php');
 
 $requete = $bdd->prepare('INSERT INTO articles (Titre, Description, DatePublication, Auteur) 
     VALUES(:Titre, :Description, :DatePublication, :Auteur)');
