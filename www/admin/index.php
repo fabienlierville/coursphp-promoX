@@ -23,11 +23,11 @@ $articles = $requete->fetchALL(PDO::FETCH_ASSOC);
             foreach($articles as $article)
             {
                 echo "<tr>";
-                    echo "<th scope='row'><a href='#'>{$article["Id"]}</a></th>";
+                    echo "<th scope='row'><a href='/admin/article_update_form.php?Id={$article["Id"]}'>{$article["Id"]}</a></th>";
                     echo "<td>{$article["Titre"]}</td>";
                     echo "<td>{$article["DatePublication"]}</td>";
                     echo "<td>{$article["Auteur"]}</td>";
-                    echo "<td><a href='#'>&#128465;</a></td>";
+                    echo "<td><a href='/admin/article_delete_script.php?Id={$article["Id"]}'>&#128465;</a></td>";
                 echo "</tr>";
             }
         ?>
