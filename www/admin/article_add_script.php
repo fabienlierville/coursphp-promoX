@@ -1,12 +1,15 @@
 <?php
 
-include('../inc/config.php');
+require('../inc/config.php');
 
+if(isset($_POST["Titre"]) && isset($_POST["Description"]) && isset($_POST["DatePublication"]) && isset($_POST["Auteur"]) )
 $requete = $bdd->prepare('INSERT INTO articles (Titre, Description, DatePublication, Auteur) 
     VALUES(:Titre, :Description, :DatePublication, :Auteur)');
 $execute = $requete->execute([
-    'Titre' => 'Un autre article'
-    , 'Description' => 'Ceci est un nouvel article'
-    , 'DatePublication' => '2019-10-10'
-    , 'Auteur' => 'Fabien'
+    'Titre' => $_POST["Titre"]
+    , 'Description' => $_POST["Description"]
+    , 'DatePublication' => $_POST["DatePublication"]
+    , 'Auteur' => $_POST["Auteur"]
 ]);
+
+header("Location:/admin");

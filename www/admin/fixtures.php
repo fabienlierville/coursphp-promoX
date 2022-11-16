@@ -1,5 +1,5 @@
 <?php
-include('../inc/config.php');
+require('../inc/config.php');
 //Clear All TAble
 $requete = $bdd->prepare('TRUNCATE TABLE articles');
 $requete->execute();
