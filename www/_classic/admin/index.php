@@ -1,6 +1,6 @@
 <?php
 require('../inc/header.php');
-require ('../inc/config.php');
+require('../inc/config.php');
 $requete = $bdd->query('SELECT * FROM articles ');
 $articles = $requete->fetchALL(PDO::FETCH_ASSOC);
 

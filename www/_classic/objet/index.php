@@ -1,6 +1,6 @@
 <?php
-require ("../inc/config.php");
-require ("./article.php");
+require("../inc/config.php");
+require("./article.php");
 use objet\Article;
 $article = new Article();
 $date = new DateTime();

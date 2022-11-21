@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>LAMP STACK</title>
-        <link rel="stylesheet" href="/stack/assets/css/bulma.min.css">
+        <link rel="stylesheet" href="/_stack/assets/css/bulma.min.css">
     </head>
     <body>
         <section class="hero is-medium is-info is-bold">
@@ -52,10 +52,10 @@
                         <hr>
                         <div class="content">
                             <ul>
-                                <li><a href="/stack/phpinfo.phpfo.php">phpinfo()</a></li>
+                                <li><a href="/_stack/phpinfo.phpfo.php">phpinfo()</a></li>
                                 <li><a href="http://localhost:<? print $_ENV['PMA_PORT']; ?>">phpMyAdmin</a></li>
-                                <li><a href="/stack/test_db.phpdb.php">Test DB Connection with mysqli</a></li>
-                                <li><a href="/stack/test_db_pdo.phpdo.php">Test DB Connection with PDO</a></li>
+                                <li><a href="/_stack/test_db.phpdb.php">Test DB Connection with mysqli</a></li>
+                                <li><a href="/_stack/test_db_pdo.phpdo.php">Test DB Connection with PDO</a></li>
                             </ul>
                         </div>
                     </div>
