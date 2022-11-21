@@ -8,6 +8,14 @@ if(isset($_POST["Username"]) &&  isset($_POST["Password"])){
             'user' => 'flierville'
             ,'role' => 'admin'
         ];
+
+        if(isset($_POST["RememberMe"]) && $_POST["RememberMe"] == true){
+            $token = md5(uniqid(rand(), true)); // On génère un token
+            // Normalement on insère le token dans une table "user_token" qui contient (token, date expiration, lien userID)
+            // Ensuite on enregistre le token dans le navigateur du client
+            setcookie('RememberMe', $token, time() + (86400 * 5), "/"); // 5 days
+        }
+
         header("location:/admin");
     }else{
         session_start();
