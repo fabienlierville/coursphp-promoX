@@ -10,7 +10,7 @@ require('../inc/config.php');
 ?>
     <h1>Ajout Article</h1>
 
-    <form name="ajoutArticle" method="post" action="article_add_script.php">
+    <form name="ajoutArticle" method="post" action="article_add_script.php" enctype="multipart/form-data">
         <input type="text" name="Titre">
         <textarea name="Description"></textarea>
         <input type="date" name="DatePublication" value=>
@@ -24,6 +24,7 @@ require('../inc/config.php');
             <option value="Emmanuel">Emmanuel</option>
             <option value="Sylvie">Sylvie</option>
         </select>
+        <input type="file" name="Image">
         <input type="submit">
     </form>
 

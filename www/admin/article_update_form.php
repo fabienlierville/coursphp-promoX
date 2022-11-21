@@ -8,6 +8,7 @@ if(isset($_GET["Id"])){
         'Id' => $_GET["Id"],
     ]);
     $article = $requete->fetch(PDO::FETCH_ASSOC);
+    var_dump($article);
 }else{
     header("Location:/admin");
 }
@@ -17,7 +18,7 @@ if(isset($_GET["Id"])){
     <h1>Mise à jour de l'Article <?php echo $article["Titre"] ?></h1>
 
 
-    <form name="ajoutArticle" method="post" action="article_update_script.php">
+    <form name="ajoutArticle" method="post" action="article_update_script.php" enctype="multipart/form-data">
         <input type="text" name="Titre" value="<?php echo $article["Titre"] ?>">
         <textarea name="Description"><?php echo $article["Description"] ?></textarea>
         <input type="date" name="DatePublication" value="<?php echo $article["DatePublication"] ?>">
@@ -31,8 +32,16 @@ if(isset($_GET["Id"])){
             <option value="Emmanuel" <?php if($article['Auteur']=='Emmanuel'){echo 'selected=selected';}?>>Emmanuel</option>
             <option value="Sylvie" <?php if($article['Auteur']=='Sylvie'){echo 'selected=selected';}?>>Sylvie</option>
         </select>
+        <input type="file" name="Image">
         <input type="hidden" name="Id" value="<?php echo $article["Id"] ?>">
+        <input type="hidden" name="imageAncienne" value="<?php echo $article["ImageRepository"].'/'.$article["ImageFileName"]  ?>">
         <input type="submit">
     </form>
-
+    <p>
+        <?php
+        if($article["ImageFileName"] != "" AND file_exists('../uploads/images/'.$article["ImageRepository"].'/'.$article["ImageFileName"])) {
+            echo '<img src="/uploads/images/'.$article["ImageRepository"].'/'.$article["ImageFileName"].'" />';
+        }
+        ?>
+    </p>
 <?php require('../inc/footer.php');?>
