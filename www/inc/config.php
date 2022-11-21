@@ -4,12 +4,17 @@ function get_words(string $sentence, int $count = 10) :string {
     return $matches[0];
 }
 
+try{
+    $ini_file = parse_ini_file("{$_SERVER["DOCUMENT_ROOT"]}/inc/config.ini", true);
+}catch (Exception $e){
+    die('Erreur : ' . $e->getMessage());
+}
 /* DATABASE CONNEXION */
-$hostname="database"; //Il s'agit du nom du serveur/container vu dans docker
-$username="docker";
-$password="docker";
-$dbname="docker";
-$dbport=3306;
+$hostname=$ini_file["database_section"]["hostname"];
+$username=$ini_file["database_section"]["username"];
+$password=$ini_file["database_section"]["password"];
+$dbname=$ini_file["database_section"]["dbname"];
+$dbport=$ini_file["database_section"]["dbport"];
 
 try
 {

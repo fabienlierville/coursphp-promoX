@@ -15,7 +15,18 @@ if(isset($_POST["search"])){
 }
 $datas = $requete->fetchALL(PDO::FETCH_ASSOC);
 
-var_dump($datas);
+//write file
+$file = "dump_article.json";
+if(!is_dir("./uploads/file/")){
+    mkdir("./uploads/file/",0777,true);
+}
+file_put_contents("./uploads/file/{$file}",json_encode($datas));
+
+//Read file
+$json_data = file_get_contents("./uploads/file/{$file}",);
+$datas_in_file = json_decode($json_data);
+var_dump($datas_in_file);
+
 
 ?>
 <h1>Bienvenue sur notre blog</h1>
