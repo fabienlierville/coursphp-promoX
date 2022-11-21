@@ -1,9 +1,14 @@
 <?php
+require('../inc/protect.php');
+//cette page nécessite le role rédacteur ou admin
+if(!have_good_role(["admin", "redacteur"])){
+    header("location:/login.php");
+}
+
 require('../inc/header.php');
 require('../inc/config.php');
 ?>
     <h1>Ajout Article</h1>
-
 
     <form name="ajoutArticle" method="post" action="article_add_script.php">
         <input type="text" name="Titre">
