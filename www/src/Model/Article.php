@@ -175,6 +175,26 @@ class Article{
             $article = new Article();
             $date = new \DateTime($articleSQL["DatePublication"]);
             $article->setTitre($articleSQL["Titre"])
+                ->setId($articleSQL["Id"])
+                ->setDescription($articleSQL["Description"])
+                ->setDatePublication($date)
+                ->setAuteur($articleSQL["Auteur"]);
+            $articlesObjet[] = $article;
+        }
+        return $articlesObjet;
+    }
+
+    public static function SqlGetAll(){
+        $bdd = BDD::getInstance();
+        $requete = $bdd->prepare('SELECT * FROM articles ORDER BY DatePublication DESC');
+        $requete->execute();
+        $articlesSQL = $requete->fetchAll(\PDO::FETCH_ASSOC);
+        $articlesObjet=[];
+        foreach ($articlesSQL as $articleSQL){
+            $article = new Article();
+            $date = new \DateTime($articleSQL["DatePublication"]);
+            $article->setTitre($articleSQL["Titre"])
+                ->setId($articleSQL["Id"])
                 ->setDescription($articleSQL["Description"])
                 ->setDatePublication($date)
                 ->setAuteur($articleSQL["Auteur"]);
