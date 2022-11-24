@@ -1,6 +1,11 @@
 <?php
 require '../vendor/autoload.php';
 
+function dd($value){
+    var_dump($value);
+    die();
+}
+
 function chargerClasse($classe)
 {
     $ds = DIRECTORY_SEPARATOR;

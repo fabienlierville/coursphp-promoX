@@ -159,6 +159,25 @@ class Article{
         }
     }
 
+    public function SqlUpdate(){
+        $bdd = BDD::getInstance();
+        try{
+            $requete = $bdd->prepare('UPDATE articles SET Titre=:Titre, Description=:Description, DatePublication=:DatePublication, Auteur=:Auteur, ImageRepository=:ImageRepository, ImageFileName=:ImageFileName WHERE Id=:Id');
+            $requete->execute([
+                    'Titre' => $this->getTitre()
+                ,'Description' => $this->getDescription()
+                ,'DatePublication' => $this->getDatePublication()->format("Y-m-d")
+                ,'Auteur' => $this->getAuteur()
+                ,'ImageRepository' => $this->getImageRepository()
+                ,'ImageFileName' => $this->getImageFileName()
+                ,'Id' => $this->getId()
+            ]);
+            return array("0", "[OK] Mise à jour");
+        }catch (\Exception $e){
+            return array("1", "[ERREUR] ".$e->getMessage());
+        }
+    }
+
     /**
      * @param \PDO $bdd
      * @param int $nb
@@ -209,6 +228,30 @@ class Article{
         $execute = $requete->execute([
             'Id' => $id
         ]);
+    }
+
+    public static function SqlGetById($id) : ?Article{
+        $bdd = BDD::getInstance();
+        $requete = $bdd->prepare('SELECT * FROM articles WHERE Id=:Id');
+        $requete->execute([
+            "Id"=> $id
+        ]);
+        $articleSQL = $requete->fetch(\PDO::FETCH_ASSOC);
+        if($articleSQL != false){
+            $article = new Article();
+            $date = new \DateTime($articleSQL["DatePublication"]);
+            $article->setTitre($articleSQL["Titre"])
+                ->setId($articleSQL["Id"])
+                ->setDescription($articleSQL["Description"])
+                ->setDatePublication($date)
+                ->setAuteur($articleSQL["Auteur"])
+                ->setImageRepository($articleSQL["ImageRepository"])
+                ->setImageFileName($articleSQL["ImageFileName"]);
+
+            return $article;
+        }
+        return null;
+
     }
 
 }
