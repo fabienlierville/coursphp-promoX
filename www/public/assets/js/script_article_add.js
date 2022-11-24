@@ -1,0 +1,1 @@
+console.log("Script Article ADD.js");

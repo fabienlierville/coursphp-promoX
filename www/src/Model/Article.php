@@ -166,7 +166,7 @@ class Article{
      */
     public static function SqlGetLast(int $nb) : array {
         $bdd = BDD::getInstance();
-        $requete = $bdd->prepare('SELECT * FROM articles ORDER BY DatePublication DESC LIMIT :nb');
+        $requete = $bdd->prepare('SELECT * FROM articles ORDER BY Id DESC LIMIT :nb');
         $requete->bindValue('nb', $nb, \PDO::PARAM_INT);
         $requete->execute();
         $articlesSQL = $requete->fetchAll(\PDO::FETCH_ASSOC);
@@ -186,7 +186,7 @@ class Article{
 
     public static function SqlGetAll(){
         $bdd = BDD::getInstance();
-        $requete = $bdd->prepare('SELECT * FROM articles ORDER BY DatePublication DESC');
+        $requete = $bdd->prepare('SELECT * FROM articles ORDER BY Id DESC');
         $requete->execute();
         $articlesSQL = $requete->fetchAll(\PDO::FETCH_ASSOC);
         $articlesObjet=[];
