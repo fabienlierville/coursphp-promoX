@@ -256,6 +256,28 @@ class Article implements JsonSerializable{
 
     }
 
+    public static function SqlSearch($keyWord) : array{
+        $bdd = BDD::getInstance();
+        $requete = $bdd->prepare('SELECT * FROM articles WHERE Titre like :Titre OR Description like :Description');
+        $requete->execute([
+            "Titre"=> "%{$keyWord}%",
+            "Description"=> "%{$keyWord}%"
+        ]);
+        $articlesSQL = $requete->fetchAll(\PDO::FETCH_ASSOC);
+        $articlesObjet=[];
+        foreach ($articlesSQL as $articleSQL){
+            $article = new Article();
+            $date = new \DateTime($articleSQL["DatePublication"]);
+            $article->setTitre($articleSQL["Titre"])
+                ->setId($articleSQL["Id"])
+                ->setDescription($articleSQL["Description"])
+                ->setDatePublication($date)
+                ->setAuteur($articleSQL["Auteur"]);
+            $articlesObjet[] = $article;
+        }
+        return $articlesObjet;
+    }
+
     public function jsonSerialize(): mixed
     {
         return
