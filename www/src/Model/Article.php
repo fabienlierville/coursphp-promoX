@@ -203,4 +203,12 @@ class Article{
         return $articlesObjet;
     }
 
+    public static function SqlDelete(int $id){
+        $bdd = BDD::getInstance();
+        $requete = $bdd->prepare('DELETE FROM articles WHERE Id=:Id');
+        $execute = $requete->execute([
+            'Id' => $id
+        ]);
+    }
+
 }

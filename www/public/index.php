@@ -27,11 +27,12 @@ if($controller != ''){
             $controller = new $class();
             if (method_exists($class, $action)) {
                 echo $controller->$action($param);
-            }else { echo'Acion n\'existe pas pour cette action !';}
-        }else { echo 'Le controlleur n\'existe pas pour cette action !';}
+            }else { throw new Exception('Action n\'existe pas pour ce controller !');}
+        }else { throw new Exception('Le controlleur n\'existe pas pour cette action !');}
     }
     catch(Exception $e) {
-        // Penser à Gérer l’exception
+        $controller = new \src\Controller\ErrorController();
+        echo $controller->show($e);
     }
 }else {
     //Route par défaut (/)
