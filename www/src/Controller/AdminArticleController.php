@@ -16,7 +16,7 @@ class AdminArticleController extends AbstractController
 
     public function delete(int $id){
         Article::SqlDelete($id);
-        header("Location:/?controller=AdminArticle&action=list");
+        header("Location:/AdminArticle/list");
     }
 
     public function add(){
@@ -63,7 +63,7 @@ class AdminArticleController extends AbstractController
                 }
             }
 
-            header("Location:/?controller=AdminArticle&action=list");
+            header("Location:/AdminArticle/list");
         }else{
             return $this->twig->render('Admin/Article/add.html.twig');
         }
@@ -122,7 +122,7 @@ class AdminArticleController extends AbstractController
                     }
                 }
 
-                header("Location:/?controller=AdminArticle&action=update&param={$id}");
+                header("Location:/AdminArticle/update/{$id}");
             }else{
                 return $this->twig->render('Admin/Article/update.html.twig',[
                     "article"=>$article
@@ -130,7 +130,7 @@ class AdminArticleController extends AbstractController
             }
 
         }else{
-            header("Location:/?controller=AdminArticle&action=list");
+            header("Location:/AdminArticle/list");
         }
     }
 }
