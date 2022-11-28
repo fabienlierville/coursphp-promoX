@@ -3,6 +3,7 @@
 namespace src\Controller;
 
 use src\Model\Article;
+use src\Service\MailService;
 
 class AdminArticleController extends AbstractController
 {
@@ -62,6 +63,16 @@ class AdminArticleController extends AbstractController
                     unlink($repository.'/'.$nomImage);
                 }
             }
+
+            // Envoi du mail
+            $article->setId($result[2]);
+            $mail = new MailService();
+            $mail->send(
+                from: "admin@votresite.com"
+                ,to: "admin@votresite.com"
+                ,subjet: "Nouvel Article posté"
+                ,html: ($this->twig->render('Mailing/article.add.html.twig',["article" => $article]))
+            );
 
             header("Location:/AdminArticle/list");
         }else{

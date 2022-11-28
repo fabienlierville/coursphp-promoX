@@ -27,7 +27,7 @@ class BDD
         }
     }
 
-    public static function getInstance()
+    public static function getInstance() : PDO
     {
         if(SELF::$_instance == null){
             SELF::initInstance();
