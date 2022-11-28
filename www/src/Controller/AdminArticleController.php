@@ -8,6 +8,7 @@ use src\Service\MailService;
 class AdminArticleController extends AbstractController
 {
     public function list(){
+        UserController::protect(["Verificateur", "Administrateur", "Redacteur"]);
         $articles = Article::SqlGetAll();
         return $this->twig->render('Admin/Article/list.html.twig',[
             'articles' => $articles
@@ -16,11 +17,13 @@ class AdminArticleController extends AbstractController
     }
 
     public function delete(int $id){
+        UserController::protect(["Administrateur"]);
         Article::SqlDelete($id);
         header("Location:/AdminArticle/list");
     }
 
     public function add(){
+        UserController::protect(["Administrateur","Redacteur"]);
         if(isset($_POST["Titre"]) && isset($_POST["Description"]) && isset($_POST["DatePublication"]) && isset($_POST["Auteur"]) ) {
             // Repris de la version "classic"
             $sqlRepository = null;
@@ -83,6 +86,7 @@ class AdminArticleController extends AbstractController
 
 
     public function update(int $id){
+        UserController::protect(["Verificateur", "Administrateur"]);
         $article = Article::SqlGetById($id);
         if($article!=null){
             if(isset($_POST["Titre"]) && isset($_POST["Description"]) && isset($_POST["DatePublication"]) && isset($_POST["Auteur"]) ) {

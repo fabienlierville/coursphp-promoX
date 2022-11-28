@@ -34,6 +34,16 @@
             <form class="d-flex">
                 <input class="form-control me-2" id="search" type="search" placeholder="Search" aria-label="Search">
             </form>
+
+            <div class="float-end">
+                {% if session.login is defined %}
+                    <a class="btn btn-danger" href="/User/logout" role="button">Log OUT</a>
+                {% else %}
+                    <a class="btn btn-success" href="/User/login" role="button">Log IN</a>
+                {% endif %}
+
+            </div>
+
         </ul>
     </div>
 
