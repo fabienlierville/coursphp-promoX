@@ -2,7 +2,10 @@
 namespace src\Controller;
 
 
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 use src\Model\Article;
+use src\Service\JwtService;
 
 class ApiArticleController{
 
@@ -18,6 +21,11 @@ class ApiArticleController{
                 "code" => 1,
                 "body" => "Erreur (GET attendu)"
             ];
+            return json_encode($result);
+        }
+
+        $result = JwtService::checkToken();
+        if($result["code"] == "1"){
             return json_encode($result);
         }
 
