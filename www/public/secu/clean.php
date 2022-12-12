@@ -5,7 +5,7 @@
 
 <?php
 if(isset($_POST['titre'])){
-    echo $_POST['titre'];
+    echo strip_tags($_POST['titre'], '<p><a>');
 }
 ?>
 </html>
