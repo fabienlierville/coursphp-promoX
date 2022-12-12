@@ -1,0 +1,17 @@
+    <h1>{{article.titre}}</h1>
+    <p><span style="font-weight: bold">Auteur :</span> {{ article.auteur }}</p>
+
+    {% if file_exist( './uploads/images/'~article.ImageRepository~'/'~article.ImageFileName ) and article.ImageFileName !="" %}
+        <p>
+        <figure class="figure">
+            <img src="/uploads/images/{{ article.ImageRepository }}/{{ article.ImageFileName }}" class="figure-img img-fluid rounded" alt="...">
+            <figcaption class="figure-caption">A caption for the above image.</figcaption>
+        </figure>
+        </p>
+    {% endif %}
+
+
+    <p>{{ article.description }}</p>
+    <p>
+        <a class="btn btn-primary" href="/Article/pdf/{{ article.id }}" role="button">Exporter en PDF</a>
+    </p>

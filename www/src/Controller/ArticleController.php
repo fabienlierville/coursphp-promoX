@@ -12,6 +12,24 @@ class ArticleController extends AbstractController
             ]);
     }
 
+    public function detail(int $id){
+        $article = Article::SqlGetById($id);
+        return $this->twig->render('Article/detail.html.twig',[
+            'article' => $article
+        ]);
+    }
+
+    public function pdf(int $id){
+        $article = Article::SqlGetById($id);
+        $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/var/cache/pdf']);
+        $mpdf->WriteHTML($this->twig->render('Article/detail.html.twig',[
+            'article' => $article
+        ]));
+
+        $mpdf->Output();
+    }
+
+
     public function fixtures() : string{
         $bdd = BDD::getInstance();
         //Clear All TAble
