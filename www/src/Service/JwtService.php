@@ -21,7 +21,7 @@ class JwtService
             'iss'  => $serverName,                // Émetteur
             'nbf'  => $issuedAt->getTimestamp(), // Utilisable Pas avant..
             'exp'  => $expire,                   // Expiration
-            'datas' => $datas
+            'datas' => CryptService::encrypt(json_encode($datas))
         ];
 
         //Fabrication du JWT (met tout en json, signe et encode en base 64)
@@ -80,7 +80,10 @@ class JwtService
 
         $result = [
             "code" => 0,
-            "body" => "Token OK"
+            "body" =>  [
+                "Token OK",
+                "datas" => json_decode(CryptService::decrypt($token->datas))
+            ]
         ];
         return $result;
 

@@ -3,6 +3,7 @@
         "twig/twig": "^3.4",
         "symfony/mailer": "^6.1",
         "firebase/php-jwt": "^6.3",
-        "laminas/laminas-config": "*"
+        "laminas/laminas-config": "*",
+        "ext-openssl": "*"
     }
 }

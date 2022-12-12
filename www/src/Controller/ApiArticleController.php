@@ -29,6 +29,14 @@ class ApiArticleController{
             return json_encode($result);
         }
 
+        if(!in_array("Administrateur",$result["body"]["datas"]->roles )){
+            $result = [
+                "code" => 1,
+                "body" => "Vous n'avez pas les droits"
+            ];
+            return json_encode($result);
+        }
+
         $articles = Article::SqlGetAll();
         return json_encode($articles);
 
